@@ -19,30 +19,37 @@ function generateCells (size) {
   //create a cells array
   let cells = [];
 
-    // make a loop that auto generates cells for each row
-    for(i = 0; i < size; i ++){
+  // make a loop that auto generates cells for each row
+  for(i = 0; i < size; i ++) {
 
-      // make a nested for-loop to create individual objects/cells
-      for(j = 0; j < size; j ++){
+    // make a nested for-loop to create individual objects/cells
+    for(j = 0; j < size; j ++) {
 
-        //create cell object row dictated by i, col dictated by j
-        cell = {
-          row: i,
-          col: j,
-          isMine: 'false',
-          hidden: 'true'
-        }
-            // fill cells array with generated cells
-            cells.push(cell);
+      //create cell object row dictated by i, col dictated by j
+      cell = {
+        row: i,
+        col: j,
+        isMine: 'false',
+        hidden: 'true'
+      }
+      // fill cells array with generated cells
+      cells.push(cell);
       }
     }
     return cells
   }
 
+  // isMine set to false - however game returning a bomb on every cell :o
+
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
 
+  // for each cell on the board I need to loop through & count surrounding mines [i] 
+  for (i = 0; i < board.cells.length; i ++) {
+    // 
+    board.cells[i].countSurroundingMines = countSurroundingMines(board.cells[i])
+  }
   // create board
   lib.initBoard()
 }
@@ -66,6 +73,18 @@ function checkForWin () {
 //
 // It will return cell objects in an array. You should loop through 
 // them, counting the number of times `cell.isMine` is true.
+
 function countSurroundingMines (cell) {
- 
+  // make a surrounding array variable using the lib function
+  var surrounding = lib.getSurroundingCells(cell.row, cell.col);
+  //make a count variable that starts at zero;
+  var count = 0;
+  // loop through all of the surrounding cells
+  for(j = 0; j <surrounding.length; j ++){
+    // check if cell is a mine and if yes add to the count
+    if(surrounding[j].isMine) {
+      count ++;
+    }
+  }
+  return count;
 }

@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Define your `board` object here!
 
 var board = {
-  cells: generateCells(5)
+  cells: generateCells(4)
 }
-
 //   cells: [
 //     {
 //       row: 0, 
@@ -19,7 +18,7 @@ var board = {
 
 function generateCells (size) {
   //create a cells array
-  let cells = [];
+  var cells = [];
   // make a loop that auto generates cells for each row
   for(i = 0; i < size; i ++) {
     // make a nested for-loop to create individual objects/cells
@@ -46,7 +45,6 @@ function generateCells (size) {
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
-
   // for each cell on the board I need to loop through & count surrounding mines [i] 
   for (i = 0; i < board.cells.length; i ++) {
     // assign new count of surrounding mines to surrounding mines property
@@ -79,13 +77,19 @@ function checkForWin () {
 
 }
 
+// ~WIP~ 
 // create a reset board function after win or loss
-function resetBoard() {
+// function resetBoard() {
 // put classes back the way they were at the start
-
+//   var elem = document.getElementsByClassName('board')[0];
+//   while (elem.firstChild) {
+//     elem.removeChild(elem.firstChild);
+//   }
 // re-initialize the global board object
-  startGame();
-}
+// startGame();
+// }
+
+// var reset = document.querySelector(".reset");
 
 // Define this function to count the number of mines around the cell
 // (there could be as many as 8). You don't have to get the surrounding

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Define your `board` object here!
 
 var board = {
-  cells: generateCells(4)
+  cells: generateCells(5)
 }
 //   cells: [
 //     {
